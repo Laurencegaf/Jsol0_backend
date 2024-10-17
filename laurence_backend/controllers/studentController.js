@@ -18,7 +18,7 @@ const getStudentById = async (req, res) => {
         const [rows] = await pool.query('SELECT * FROM students WHERE student_id = ?', [id]);
 
         if (rows.length === 0) {
-            return res.status(404).json({ error: 'Student not found' });
+            return res.status(404).json({ error: 'Student not Detected' });
         }
 
         res.json(rows[0]);
@@ -47,7 +47,7 @@ const createStudent = async (req, res) => {
             'INSERT INTO students (lname, fname, mname, user_id, course_id) VALUES (?, ?, ?, ?, ?)',
             [lname, fname, mname, user_id, course_id]
         );
-        res.status(201).json({ message: 'Student created successfully', studentId: result.insertId });
+        res.status(201).json({ message: 'Student enrolled sucessfully', studentId: result.insertId });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -64,7 +64,7 @@ const updateStudent = async (req, res) => {
         );
 
         if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Student not found' });
+            return res.status(404).json({ error: 'Student not Detected' });
         }
 
         res.json({ message: 'Student updated successfully' });
@@ -83,7 +83,7 @@ const deleteStudent = async (req, res) => {
             return res.status(404).json({ error: 'Student not found' });
         }
 
-        res.json({ message: 'Student deleted successfully' });
+        res.json({ message: 'Student deleted from existence' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
