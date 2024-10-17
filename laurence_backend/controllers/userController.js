@@ -18,7 +18,7 @@ const getUserById = async (req, res) => {
     const [rows] = await pool.query("SELECT id, fullname, username, created_at, updated_at FROM users WHERE id = ?", [id]);
 
     if (rows.length === 0) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "User Unavailable" });
     }
 
     res.json(rows[0]);
@@ -52,7 +52,7 @@ const updateUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json({ message: "User updated successfully" });
+    res.json({ message: "User update Granted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -68,7 +68,7 @@ const deleteUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.json({ message: "User deleted successfully" });
+    res.json({ message: "User deleted from existence" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
